@@ -7,12 +7,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+    res.send('Hello World!')
 })
 
 
 // This is my data (one day it will come from database)
-let events =[
+let events = [
     {
         "created": 1478090304000,
         "duration": 9000000,
@@ -1363,119 +1363,229 @@ let events =[
 ]
 
 let places = [
-  {
-    id: '1',
-    name: 'Coding Academy',
-    lat: 2,
-    lng: 1,
-    tags: [
-      'Joy',
-      'Fun'
-    ]
-  },
-  {
-    id: '2',
-    name: 'Home',
-    lat: 0,
-    lng: 1,
-    tags: [
-      'Hell'
-    ]
-  },
-  {
-    id: '3',
-    name: 'Cofix',
-    lat: 3,
-    lng: 3,
-    tags: [
-      'Tasty',
-      'Cheap'
-    ]
-  },
+    {
+        id: guid(),
+        name: 'Coding Academy',
+        lat: 2,
+        lng: 1,
+        tags: [
+            'Joy',
+            'Fun'
+        ]
+    },
+    {
+        id: guid(),
+        name: 'Home',
+        lat: 0,
+        lng: 1,
+        tags: [
+            'Hell'
+        ]
+    },
+    {
+        id: guid(),
+        name: 'Cofix',
+        lat: 3,
+        lng: 3,
+        tags: [
+            'Tasty',
+            'Cheap'
+        ]
+    },
 ];
+
+let emails = [
+    {
+        id: guid(),
+        subject: 'Ubuntu Transfer',
+        from: 'Sahar',
+        to: 'Neta',
+        date: new Date(),
+        preview: 'Lorem ipsum',
+        content: `Lorem ipsum bafdjkasbfjakj bkja bfkjab kab 
+          fkjasb kjfb aksf abks fbks`,
+        isRead: false
+    },
+    {
+        id: guid(),
+        subject: 'Job Looking',
+        from: 'Sahar',
+        to: 'HR',
+        date: new Date(),
+        preview: 'Lorem ipsum',
+        content: `Lorem ipsum bafdjkasbfjakj bkja bfkjab kab 
+          fkjasb kjfb aksf abks fbks`,
+        isRead: false
+    },
+    {
+        id: guid(),
+        subject: 'Job Looking 2',
+        from: 'Sahar',
+        to: 'another HR',
+        date: new Date(),
+        preview: 'Lorem ipsum',
+        content: `Lorem ipsum bafdjkasbfjakj bkja bfkjab kab 
+          fkjasb kjfb aksf abks fbks`,
+        isRead: false
+    },
+    {
+        id: guid(),
+        subject: 'Music Concert',
+        from: 'MusicConcerts@gmail.com',
+        to: 'SaharSabin14@gmail.com',
+        date: new Date(),
+        preview: 'Lorem ipsum',
+        content: `Lorem ipsum bafdjkasbfjakj bkja bfkjab kab 
+          fkjasb kjfb aksf abks fbks`,
+        isRead: false
+    }
+]
 
 // *** REST API Events***
 
 // LIST
 app.get('/event', (req, res) => {
-  res.json(events);
+    res.json(events);
 })
 
 // READ
 app.get('/event/:id', (req, res) => {
-  const id = req.params.id;
-  const event = events.find(currItem => currItem.id === id);
-  res.json(event);
+    const id = req.params.id;
+    const event = events.find(currItem => currItem.id === id);
+    res.json(event);
 })
 
 // DELETE
 app.delete('/event/:id', (req, res) => {
-  const id = req.params.id;
-  events = events.filter(currItem => currItem.id !== id);
-  res.json({msg:'event was Deleted!'});
+    const id = req.params.id;
+    events = events.filter(currItem => currItem.id !== id);
+    res.json({ msg: 'event was Deleted!' });
 })
 
 // CREATE
 app.post('/event', (req, res) => {
-  const item = req.body;
-  item.id = findNextId();
-  events.push(item);
-  res.json({msg:'event was added!'});
+    const item = req.body;
+    item.id = guid();
+    events.push(item);
+    res.json({ msg: 'event was added!' });
 
 })
 
 //UPDATE
 app.put('/event', (req, res) => {
-  const item = req.body;
-  events = events.map(currItem => currItem.id === item.id ? item : currItem)
-  res.json({msg:'event was updated!'});
+    const item = req.body;
+    events = events.map(currItem => currItem.id === item.id ? item : currItem)
+    res.json({ msg: 'event was updated!' });
 });
 /********************************************************************************************* */
 // *** REST API Places***
 
 // LIST
 app.get('/place', (req, res) => {
-  res.json(places);
+    res.json(places);
 })
 
 // READ
 app.get('/place/:id', (req, res) => {
-  const id = req.params.id;
-  const place = places.find(currItem => currItem.id === id);
-  res.json(place);
+    const id = req.params.id;
+    const place = places.find(currItem => currItem.id === id);
+    res.json(place);
 })
 
 // DELETE
 app.delete('/place/:id', (req, res) => {
-  const id = req.params.id;
-  places = places.filter(currItem => currItem.id !== id);
-  res.json({msg:'place was Deleted!'});
+    const id = req.params.id;
+    places = places.filter(currItem => currItem.id !== id);
+    res.json({ msg: 'place was Deleted!' });
 })
 
 // CREATE
 app.post('/place', (req, res) => {
-  const item = req.body;
-  item.id = findNextId();
-  places.push(item);
-  res.json({msg:'place was Created!'});  
+    const item = req.body;
+    item.id = guid();
+    places.push(item);
+    res.json({ msg: 'place was Created!' });
 
 })
 
 //UPDATE
 app.put('/place', (req, res) => {
-  const item = req.body;
-  places = places.map(currItem => currItem.id === item.id ? item : currItem)
-  res.json({msg:'place was Updated!'});
+    const item = req.body;
+    places = places.map(currItem => currItem.id === item.id ? item : currItem)
+    res.json({ msg: 'place was Updated!' });
 });
 
-app.listen(3003, () => {
-  console.log('REST API listening on port 3003!')
+/********************************************************************************************* */
+// *** REST API Emails***
+
+
+// LIST
+app.get('/email', (req, res) => {
+    res.json(emails);
 })
 
-function findNextId() {
-  var maxId = 0;
-  events.forEach(item => {
-    if (item.id > maxId) maxId = item.id;
-  });
-  return maxId + 1;
+// READ
+app.get('/email/:id', (req, res) => {
+    console.log(req.params.id);
+    const id = req.params.id;
+    const email = emails.find(currItem => currItem.id === id);
+    email.isRead = true;
+    res.json(email);
+})
+
+// DELETE
+app.delete('/email/:id', (req, res) => {
+    const id = req.params.id;
+    emails = emails.filter(currItem => currItem.id !== id);
+    res.json({ msg: 'email was Deleted!' });
+})
+
+// CREATE
+app.post('/email', (req, res) => {
+    const item = req.body;
+    item.id = guid();
+    emails.push(item);
+    res.json({ msg: 'email was Created!' });
+
+})
+
+//UPDATE
+// app.put('/email', (req, res) => {
+//   const item = req.body;
+//   emails = emails.map(currItem => currItem.id === item.id ? item : currItem)
+//   res.json({msg:'email was Updated!'});
+// });
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------
+
+app.listen(3003, () => {
+    console.log('REST API listening on port 3003!')
+})
+
+function guid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
 }
+
+// function findNextId(array) {
+//     var maxId = -1;
+//     array.forEach(item => {
+//         if (+item.id > maxId) maxId = +item.id;
+//     });
+//     return +maxId + 1;
+// }
