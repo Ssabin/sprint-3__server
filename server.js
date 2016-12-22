@@ -1544,7 +1544,7 @@ app.delete('/email/:id', (req, res) => {
 app.post('/email', (req, res) => {
     const item = req.body;
     item.id = guid();
-    emails.push(item);
+    emails.unshift(item);
     res.json({ msg: 'email was Created!' });
 
 })
