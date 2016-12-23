@@ -1366,8 +1366,8 @@ let places = [
     {
         id: guid(),
         name: 'Coding Academy',
-        lat: 2,
-        lng: 1,
+        lat: 32.106529235839844,
+        lng: 34.83524703979492,
         tags: [
             'Joy',
             'Fun'
@@ -1376,8 +1376,8 @@ let places = [
     {
         id: guid(),
         name: 'Home',
-        lat: 0,
-        lng: 1,
+        lat: 32.105529235839844,
+        lng: 34.83424703979492,
         tags: [
             'Hell'
         ]
@@ -1385,8 +1385,8 @@ let places = [
     {
         id: guid(),
         name: 'Cofix',
-        lat: 3,
-        lng: 3,
+        lat: 32.206539235839844,
+        lng: 34.83523703979492,
         tags: [
             'Tasty',
             'Cheap'
